@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bufqo8qg5g0qn"]
+
+[ext_resource type="PackedScene" uid="uid://dfk3xs1oufwne" path="res://BaseCamra.tscn" id="1_v3quk"]
+
+[node name="mainScene" type="Node2D"]
+
+[node name="BaseScreen" parent="." instance=ExtResource("1_v3quk")]

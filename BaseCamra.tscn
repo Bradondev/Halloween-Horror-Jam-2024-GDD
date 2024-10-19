@@ -1,0 +1,250 @@
+[gd_scene load_steps=12 format=3 uid="uid://dfk3xs1oufwne"]
+
+[ext_resource type="Script" path="res://MainSceneCode.gd" id="1_gnvie"]
+[ext_resource type="Shader" path="res://VideoEffect.gdshader" id="1_ln5qv"]
+[ext_resource type="Script" path="res://player.gd" id="2_tx5s3"]
+[ext_resource type="Texture2D" uid="uid://bhbp3hqkqpx5" path="res://icon.svg" id="2_v7ra3"]
+[ext_resource type="Script" path="res://monster_maneger.gd" id="3_j0cqo"]
+[ext_resource type="Script" path="res://front.gd" id="4_wi2lc"]
+[ext_resource type="Script" path="res://middle.gd" id="5_y1adk"]
+[ext_resource type="Script" path="res://end.gd" id="6_8pign"]
+
+[sub_resource type="Gradient" id="Gradient_laj0g"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0whsg"]
+gradient = SubResource("Gradient_laj0g")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kcp4y"]
+shader = ExtResource("1_ln5qv")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.006
+shader_parameter/scanlines_width = 0.0
+shader_parameter/grille_opacity = 0.021
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = false
+shader_parameter/roll = false
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 10.337
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.04
+shader_parameter/noise_opacity = 0.073
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.03
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+
+[node name="BaseScreen" type="Node2D" node_paths=PackedStringArray("screen_1", "screen_2", "sreen_3", "screen_4")]
+script = ExtResource("1_gnvie")
+screen_1 = NodePath("Screen1")
+screen_2 = NodePath("Screen2")
+sreen_3 = NodePath("Sreen3")
+screen_4 = NodePath("Screen4")
+
+[node name="Player" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("2_tx5s3")
+
+[node name="MonsterManeger" type="Control" parent="." node_paths=PackedStringArray("front", "middle", "end", "screen_1", "screen_2", "sreen_3", "screen_4")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_j0cqo")
+front = NodePath("Front")
+middle = NodePath("middle")
+end = NodePath("End")
+screen_1 = NodePath("../Screen1")
+screen_2 = NodePath("../Screen2")
+sreen_3 = NodePath("../Sreen3")
+screen_4 = NodePath("../Screen4")
+
+[node name="Front" type="TextureRect" parent="MonsterManeger" node_paths=PackedStringArray("timer", "base_screen")]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_wi2lc")
+timer = NodePath("Timer")
+base_screen = NodePath("../..")
+
+[node name="Timer" type="Timer" parent="MonsterManeger/Front"]
+wait_time = 2.0
+
+[node name="middle" type="TextureRect" parent="MonsterManeger"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_y1adk")
+
+[node name="End" type="TextureRect" parent="MonsterManeger"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_8pign")
+
+[node name="Screen1" type="CanvasLayer" parent="." groups=["Screen"]]
+
+[node name="TextureRect" type="TextureRect" parent="Screen1"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_0whsg")
+
+[node name="ColorRect" type="ColorRect" parent="Screen1"]
+z_index = 1
+material = SubResource("ShaderMaterial_kcp4y")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ScreenShift" type="ColorRect" parent="Screen1"]
+modulate = Color(0.972549, 0.972549, 0.972549, 0)
+z_index = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Icon" type="TextureRect" parent="Screen1"]
+offset_left = 187.0
+offset_top = 251.0
+offset_right = 315.0
+offset_bottom = 379.0
+texture = ExtResource("2_v7ra3")
+
+[node name="Screen2" type="CanvasLayer" parent="." groups=["Screen"]]
+
+[node name="TextureRect" type="TextureRect" parent="Screen2"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_0whsg")
+
+[node name="ColorRect" type="ColorRect" parent="Screen2"]
+z_index = 1
+material = SubResource("ShaderMaterial_kcp4y")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ScreenShift" type="ColorRect" parent="Screen2"]
+modulate = Color(0.972549, 0.972549, 0.972549, 0)
+z_index = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -3.0
+offset_right = 2.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Icon" type="TextureRect" parent="Screen2"]
+offset_left = 892.0
+offset_top = 107.0
+offset_right = 1020.0
+offset_bottom = 235.0
+texture = ExtResource("2_v7ra3")
+
+[node name="Sreen3" type="CanvasLayer" parent="." groups=["Screen"]]
+visible = false
+
+[node name="TextureRect" type="TextureRect" parent="Sreen3"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_0whsg")
+
+[node name="ColorRect" type="ColorRect" parent="Sreen3"]
+z_index = 1
+material = SubResource("ShaderMaterial_kcp4y")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ScreenShift" type="ColorRect" parent="Sreen3"]
+modulate = Color(0.972549, 0.972549, 0.972549, 0)
+z_index = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Icon" type="TextureRect" parent="Sreen3"]
+offset_left = 48.0
+offset_top = 11.0
+offset_right = 176.0
+offset_bottom = 139.0
+texture = ExtResource("2_v7ra3")
+
+[node name="Screen4" type="CanvasLayer" parent="." groups=["Screen"]]
+visible = false
+
+[node name="TextureRect" type="TextureRect" parent="Screen4"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_0whsg")
+
+[node name="ColorRect" type="ColorRect" parent="Screen4"]
+z_index = 1
+material = SubResource("ShaderMaterial_kcp4y")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ScreenShift" type="ColorRect" parent="Screen4"]
+modulate = Color(0.972549, 0.972549, 0.972549, 0)
+z_index = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Icon" type="TextureRect" parent="Screen4"]
+offset_left = 1082.0
+offset_top = 542.0
+offset_right = 1210.0
+offset_bottom = 670.0
+texture = ExtResource("2_v7ra3")
+
+[connection signal="Turn" from="Player" to="." method="LookThroughScreenArrary"]
+[connection signal="timeout" from="MonsterManeger/Front/Timer" to="MonsterManeger/Front" method="_on_timer_timeout"]
