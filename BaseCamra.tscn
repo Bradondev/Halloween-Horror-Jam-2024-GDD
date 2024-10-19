@@ -1,18 +1,16 @@
-[gd_scene load_steps=12 format=3 uid="uid://dfk3xs1oufwne"]
+[gd_scene load_steps=13 format=3 uid="uid://dfk3xs1oufwne"]
 
 [ext_resource type="Script" path="res://MainSceneCode.gd" id="1_gnvie"]
 [ext_resource type="Shader" path="res://VideoEffect.gdshader" id="1_ln5qv"]
 [ext_resource type="Script" path="res://player.gd" id="2_tx5s3"]
-[ext_resource type="Texture2D" uid="uid://bhbp3hqkqpx5" path="res://icon.svg" id="2_v7ra3"]
 [ext_resource type="Script" path="res://monster_maneger.gd" id="3_j0cqo"]
+[ext_resource type="Texture2D" uid="uid://bfbaygtkewl11" path="res://eyes4.png" id="4_awa1b"]
 [ext_resource type="Script" path="res://front.gd" id="4_wi2lc"]
 [ext_resource type="Script" path="res://middle.gd" id="5_y1adk"]
 [ext_resource type="Script" path="res://end.gd" id="6_8pign"]
-
-[sub_resource type="Gradient" id="Gradient_laj0g"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_0whsg"]
-gradient = SubResource("Gradient_laj0g")
+[ext_resource type="Texture2D" uid="uid://bkdsqtcicmpu3" path="res://eyeleft.png" id="9_nbxwf"]
+[ext_resource type="Texture2D" uid="uid://dgy7frltkgao7" path="res://eyemid.png" id="10_sd7ph"]
+[ext_resource type="Texture2D" uid="uid://mj71ea7oky5" path="res://eyeright.png" id="11_h2d60"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kcp4y"]
 shader = ExtResource("1_ln5qv")
@@ -32,8 +30,8 @@ shader_parameter/noise_speed = 5.0
 shader_parameter/static_noise_intensity = 0.06
 shader_parameter/aberration = 0.03
 shader_parameter/brightness = 1.4
-shader_parameter/discolor = true
-shader_parameter/warp_amount = 0.0
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 5.0
 shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 0.5
@@ -57,38 +55,16 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("3_j0cqo")
-front = NodePath("Front")
-middle = NodePath("middle")
-end = NodePath("End")
+front = NodePath("../Screen1/Front")
+middle = NodePath("../Screen4/middle")
+end = NodePath("../Sreen3/End")
 screen_1 = NodePath("../Screen1")
 screen_2 = NodePath("../Screen2")
 sreen_3 = NodePath("../Sreen3")
 screen_4 = NodePath("../Screen4")
 
-[node name="Front" type="TextureRect" parent="MonsterManeger" node_paths=PackedStringArray("timer", "base_screen")]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("4_wi2lc")
-timer = NodePath("Timer")
-base_screen = NodePath("../..")
-
-[node name="Timer" type="Timer" parent="MonsterManeger/Front"]
-wait_time = 2.0
-
-[node name="middle" type="TextureRect" parent="MonsterManeger"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("5_y1adk")
-
-[node name="End" type="TextureRect" parent="MonsterManeger"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("6_8pign")
-
 [node name="Screen1" type="CanvasLayer" parent="." groups=["Screen"]]
+visible = false
 
 [node name="TextureRect" type="TextureRect" parent="Screen1"]
 anchors_preset = 15
@@ -96,7 +72,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_0whsg")
+texture = ExtResource("4_awa1b")
 
 [node name="ColorRect" type="ColorRect" parent="Screen1"]
 z_index = 1
@@ -119,14 +95,23 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Icon" type="TextureRect" parent="Screen1"]
-offset_left = 187.0
-offset_top = 251.0
-offset_right = 315.0
-offset_bottom = 379.0
-texture = ExtResource("2_v7ra3")
+[node name="Front" type="TextureRect" parent="Screen1" node_paths=PackedStringArray("timer", "ArrayOfScreen", "base_screen", "end", "middle")]
+offset_left = 223.0
+offset_top = 195.0
+offset_right = 475.0
+offset_bottom = 518.0
+script = ExtResource("4_wi2lc")
+timer = NodePath("Timer")
+ArrayOfScreen = [NodePath(".."), NodePath("../../Screen2"), NodePath("../../Sreen3"), NodePath("../../Screen4")]
+base_screen = NodePath("../..")
+end = NodePath("../../Sreen3/End")
+middle = NodePath("../../Screen4/middle")
+
+[node name="Timer" type="Timer" parent="Screen1/Front"]
+wait_time = 2.0
 
 [node name="Screen2" type="CanvasLayer" parent="." groups=["Screen"]]
+visible = false
 
 [node name="TextureRect" type="TextureRect" parent="Screen2"]
 anchors_preset = 15
@@ -134,7 +119,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_0whsg")
+texture = ExtResource("4_awa1b")
 
 [node name="ColorRect" type="ColorRect" parent="Screen2"]
 z_index = 1
@@ -161,15 +146,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Icon" type="TextureRect" parent="Screen2"]
-offset_left = 892.0
-offset_top = 107.0
-offset_right = 1020.0
-offset_bottom = 235.0
-texture = ExtResource("2_v7ra3")
-
 [node name="Sreen3" type="CanvasLayer" parent="." groups=["Screen"]]
-visible = false
 
 [node name="TextureRect" type="TextureRect" parent="Sreen3"]
 anchors_preset = 15
@@ -177,7 +154,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_0whsg")
+texture = ExtResource("4_awa1b")
 
 [node name="ColorRect" type="ColorRect" parent="Sreen3"]
 z_index = 1
@@ -200,12 +177,15 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Icon" type="TextureRect" parent="Sreen3"]
-offset_left = 48.0
-offset_top = 11.0
-offset_right = 176.0
-offset_bottom = 139.0
-texture = ExtResource("2_v7ra3")
+[node name="End" type="TextureRect" parent="Sreen3" node_paths=PackedStringArray("ArrayOfScreen")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_h2d60")
+script = ExtResource("6_8pign")
+ArrayOfScreen = [NodePath("../../Screen1"), NodePath("../../Screen2"), NodePath(".."), NodePath("../../Screen4")]
 
 [node name="Screen4" type="CanvasLayer" parent="." groups=["Screen"]]
 visible = false
@@ -216,7 +196,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_0whsg")
+texture = ExtResource("4_awa1b")
 
 [node name="ColorRect" type="ColorRect" parent="Screen4"]
 z_index = 1
@@ -239,12 +219,69 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Icon" type="TextureRect" parent="Screen4"]
-offset_left = 1082.0
-offset_top = 542.0
-offset_right = 1210.0
-offset_bottom = 670.0
-texture = ExtResource("2_v7ra3")
+[node name="middle" type="TextureRect" parent="Screen4" node_paths=PackedStringArray("base_screen", "monster_maneger", "eye_1HurtBox", "eye_2HurtBox", "eye_3HurtBox", "eye_1_text", "eye_2_text", "eye_3_text", "ArrayOfScreen")]
+offset_left = 2.0
+offset_right = 1282.0
+offset_bottom = 720.0
+texture = ExtResource("4_awa1b")
+script = ExtResource("5_y1adk")
+base_screen = NodePath("../..")
+monster_maneger = NodePath("../../MonsterManeger")
+eye_1HurtBox = NodePath("eye1")
+eye_2HurtBox = NodePath("eye2")
+eye_3HurtBox = NodePath("eye3")
+eye_1_text = NodePath("eye1Text")
+eye_2_text = NodePath("eye2Text")
+eye_3_text = NodePath("eye3Text")
+ArrayOfScreen = [NodePath("../../Screen1"), NodePath("../../Screen2"), NodePath("../../Sreen3"), NodePath("..")]
+
+[node name="eye1Text" type="TextureRect" parent="Screen4/middle"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_nbxwf")
+
+[node name="eye2Text" type="TextureRect" parent="Screen4/middle"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_sd7ph")
+
+[node name="eye3Text" type="TextureRect" parent="Screen4/middle"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_h2d60")
+
+[node name="eye1" type="Area2D" parent="Screen4/middle"]
+
+[node name="eye1" type="CollisionPolygon2D" parent="Screen4/middle/eye1"]
+polygon = PackedVector2Array(358, 98, 272, 411, 349, 597, 408, 607, 457, 496, 459, 342, 447, 168, 447, 91, 412, 93)
+
+[node name="eye2" type="Area2D" parent="Screen4/middle"]
+
+[node name="eye2" type="CollisionPolygon2D" parent="Screen4/middle/eye2"]
+position = Vector2(257, 20)
+polygon = PackedVector2Array(329, 95, 280, 411, 335, 642, 372, 653, 408, 631, 486, 486, 489, 332, 464, 164, 425, 99, 366, 75)
+
+[node name="eye3" type="Area2D" parent="Screen4/middle"]
+
+[node name="eye3" type="CollisionPolygon2D" parent="Screen4/middle/eye3"]
+position = Vector2(495, -7)
+polygon = PackedVector2Array(289, 115, 321, 413, 341, 610, 386, 615, 457, 496, 449, 311, 374, 150, 327, 105)
 
 [connection signal="Turn" from="Player" to="." method="LookThroughScreenArrary"]
-[connection signal="timeout" from="MonsterManeger/Front/Timer" to="MonsterManeger/Front" method="_on_timer_timeout"]
+[connection signal="Turn" from="Player" to="Screen1/Front" method="CountDownTicks"]
+[connection signal="timeout" from="Screen1/Front/Timer" to="Screen1/Front" method="_on_timer_timeout"]
+[connection signal="input_event" from="Screen4/middle/eye1" to="Screen4/middle" method="_on_eye_1_input_event"]
+[connection signal="input_event" from="Screen4/middle/eye2" to="Screen4/middle" method="_on_eye_2_input_event"]
+[connection signal="input_event" from="Screen4/middle/eye3" to="Screen4/middle" method="_on_eye_3_input_event"]
