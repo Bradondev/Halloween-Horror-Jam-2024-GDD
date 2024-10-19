@@ -14,7 +14,7 @@ var CurrentScreenIndex: int = 0
 @export var base_screen: Node2D
 @export var end: TextureRect 
 @export var middle: TextureRect 
-
+@export var ListOfMouths: Array[Texture2D]
 
 
 

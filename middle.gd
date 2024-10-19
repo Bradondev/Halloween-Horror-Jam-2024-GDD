@@ -61,15 +61,23 @@ func _on_eye_1_input_event(viewport: Node, event: InputEvent, shape_idx: int) ->
 	if monster_maneger.MonsterMoving: return
 	if event.is_action_pressed("Attack"):
 		monster_maneger.MoveMonster()
+		eye_1_text.visible = false
+		
 		print_debug("eye 1 click")
 		
 
 
 func _on_eye_2_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if monster_maneger.MonsterMoving: return
+	if event.is_action_pressed("Attack"):
+		monster_maneger.MoveMonster()
+		eye_2_text.visible = false
 	pass # Replace with function body.
 
 
 func _on_eye_3_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if monster_maneger.MonsterMoving: return
+	if event.is_action_pressed("Attack"):
+		monster_maneger.MoveMonster()
+		eye_3_text.visible = false
 	pass # Replace with function body.

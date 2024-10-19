@@ -8,7 +8,7 @@ var  CurrentScreen: CanvasLayer
 
 var CurrentScreenIndex: int = 0
 @export var base_screen: Node2D
-
+@export var ListOfarms: Array[Texture2D]
 
 
 func  _ready() -> void:

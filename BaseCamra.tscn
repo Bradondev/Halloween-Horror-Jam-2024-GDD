@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dfk3xs1oufwne"]
+[gd_scene load_steps=23 format=3 uid="uid://dfk3xs1oufwne"]
 
 [ext_resource type="Script" path="res://MainSceneCode.gd" id="1_gnvie"]
 [ext_resource type="Shader" path="res://VideoEffect.gdshader" id="1_ln5qv"]
@@ -8,9 +8,19 @@
 [ext_resource type="Script" path="res://front.gd" id="4_wi2lc"]
 [ext_resource type="Script" path="res://middle.gd" id="5_y1adk"]
 [ext_resource type="Script" path="res://end.gd" id="6_8pign"]
+[ext_resource type="Texture2D" uid="uid://bett2j64xy441" path="res://mouth-stage1.png" id="6_t7q0d"]
+[ext_resource type="Texture2D" uid="uid://wmh4juxamptb" path="res://mouth-stage2.png" id="8_2ckfu"]
+[ext_resource type="Texture2D" uid="uid://ba2jgucfnrvpp" path="res://mouth-stage3.png" id="9_2cjnu"]
 [ext_resource type="Texture2D" uid="uid://bkdsqtcicmpu3" path="res://eyeleft.png" id="9_nbxwf"]
+[ext_resource type="Texture2D" uid="uid://cpvi46coywrfb" path="res://mouth-stage4.png" id="10_50alp"]
 [ext_resource type="Texture2D" uid="uid://dgy7frltkgao7" path="res://eyemid.png" id="10_sd7ph"]
+[ext_resource type="Texture2D" uid="uid://bs4mrmq2kao1c" path="res://mouth-stage5.png" id="11_00ta4"]
 [ext_resource type="Texture2D" uid="uid://mj71ea7oky5" path="res://eyeright.png" id="11_h2d60"]
+[ext_resource type="Texture2D" uid="uid://bqvpb1bogexvj" path="res://arms5.png" id="12_pe6gb"]
+[ext_resource type="Texture2D" uid="uid://b5va6q81stvei" path="res://arms1.png" id="14_tvslc"]
+[ext_resource type="Texture2D" uid="uid://docex50qjt5ju" path="res://arms2.png" id="15_q4t5l"]
+[ext_resource type="Texture2D" uid="uid://d0c2u7ujqlqsn" path="res://arms3.png" id="16_8pc7j"]
+[ext_resource type="Texture2D" uid="uid://qmtf7ves3r8e" path="res://arms4.png" id="17_xw832"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kcp4y"]
 shader = ExtResource("1_ln5qv")
@@ -64,7 +74,6 @@ sreen_3 = NodePath("../Sreen3")
 screen_4 = NodePath("../Screen4")
 
 [node name="Screen1" type="CanvasLayer" parent="." groups=["Screen"]]
-visible = false
 
 [node name="TextureRect" type="TextureRect" parent="Screen1"]
 anchors_preset = 15
@@ -96,19 +105,38 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Front" type="TextureRect" parent="Screen1" node_paths=PackedStringArray("timer", "ArrayOfScreen", "base_screen", "end", "middle")]
-offset_left = 223.0
-offset_top = 195.0
-offset_right = 475.0
-offset_bottom = 518.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_t7q0d")
 script = ExtResource("4_wi2lc")
 timer = NodePath("Timer")
 ArrayOfScreen = [NodePath(".."), NodePath("../../Screen2"), NodePath("../../Sreen3"), NodePath("../../Screen4")]
 base_screen = NodePath("../..")
 end = NodePath("../../Sreen3/End")
 middle = NodePath("../../Screen4/middle")
+ListOfMouths = Array[Texture2D]([ExtResource("6_t7q0d"), ExtResource("8_2ckfu"), ExtResource("9_2cjnu"), ExtResource("10_50alp"), ExtResource("11_00ta4")])
 
 [node name="Timer" type="Timer" parent="Screen1/Front"]
 wait_time = 2.0
+
+[node name="parry" type="RichTextLabel" parent="Screen1/Front"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 154.0
+offset_top = 111.0
+offset_right = -639.0
+offset_bottom = -359.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.670588, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 86
+bbcode_enabled = true
+text = "[center][shake rate=100.0 level=100 qqconnected=1100]Parry[/shake]"
 
 [node name="Screen2" type="CanvasLayer" parent="." groups=["Screen"]]
 visible = false
@@ -147,6 +175,7 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Sreen3" type="CanvasLayer" parent="." groups=["Screen"]]
+visible = false
 
 [node name="TextureRect" type="TextureRect" parent="Sreen3"]
 anchors_preset = 15
@@ -183,9 +212,26 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("11_h2d60")
+texture = ExtResource("12_pe6gb")
 script = ExtResource("6_8pign")
 ArrayOfScreen = [NodePath("../../Screen1"), NodePath("../../Screen2"), NodePath(".."), NodePath("../../Screen4")]
+ListOfarms = Array[Texture2D]([ExtResource("14_tvslc"), ExtResource("15_q4t5l"), ExtResource("16_8pc7j"), ExtResource("17_xw832"), ExtResource("12_pe6gb")])
+
+[node name="parry" type="RichTextLabel" parent="Sreen3/End"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 379.0
+offset_top = 530.0
+offset_right = -414.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.670588, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 86
+bbcode_enabled = true
+text = "[center][shake rate=100.0 level=100 qqconnected=1100]Parry[/shake]"
 
 [node name="Screen4" type="CanvasLayer" parent="." groups=["Screen"]]
 visible = false
