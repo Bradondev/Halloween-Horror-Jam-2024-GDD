@@ -27,7 +27,10 @@ var CurrentScreenIndex: int = 0
 @export var armsSound3: AudioStreamPlayer 
 @export var squelching: AudioStreamPlayer
 @export var lamb_chop_speed: AudioStreamPlayer 
+@export var shake: AnimatedSprite2D 
+@export var white_noise: AudioStreamPlayer
 
+var Def:bool = false
 var EyeIsOpend: bool
 var IsAttacking: bool = false
 
@@ -79,7 +82,11 @@ func  CheckIfPlayerIsInSameView():
 
 func  CountDownTicks(dir:int =0)->void:
 	
-	if base_screen.CurrentScreen == get_parent():return
+	if base_screen.CurrentScreen == get_parent():
+		if Ticks <=2:
+			white_noise.play()
+		else: white_noise.stop()
+		return
 
 	Ticks -= 1
 	if Ticks <= 0:
@@ -104,9 +111,9 @@ func  SetMouthSprite()->void:
 		
 	if  Ticks <=2 :
 		texture = ListOfMouths[3]
-		shake_teeth.play("Shaketeeth")
+		shake.visible = true
 		return
-	shake_teeth.stop()
+
 
 		
 func  ReadyMouthAttack():
@@ -136,7 +143,9 @@ func MouthAttack():
 		print_debug("attack went through")
 		player.Takedamage()
 	
+
 	texture = ListOfMouths[0]
+
 	
 	Ticks = 10
 	IsAttacking = false
@@ -147,13 +156,17 @@ func  MouthParryed():
 	timer.stop()
 	attack_time.stop()
 	shake_teeth.stop()
-	texture = ListOfMouths[4]
+	shake.visible = false 
+	if Def:
+		texture = ListOfMouths[0]
+	else :
+		texture = ListOfMouths[4]
+
 	
 	eye_1.monitoring = true
 	
 	Ticks = 10
 	IsAttacking = false
-	SetMouthSprite()
 	pass
 
 
@@ -162,6 +175,7 @@ func  Reset():
 	ParryArea.monitoring = false
 	texture = ListOfMouths[0]
 	IsAttacking = false
+	shake.visible = false 
 	Ticks = 10
 
 func _on_timer_timeout() -> void:
@@ -179,6 +193,7 @@ func _on_eye_1_input_event(viewport: Node, event: InputEvent, shape_idx: int) ->
 		monster_maneger.MoveMonster()
 		end.RiseClaw(0)
 		base_screen.EyesKilled +=1
+		Def = true
 		pass
 
 

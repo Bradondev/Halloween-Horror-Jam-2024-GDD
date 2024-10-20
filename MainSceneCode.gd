@@ -85,10 +85,8 @@ func  WinGame():
 	WinScene.process_mode = Node.PROCESS_MODE_INHERIT
 	WinScene.visible = true
 	
-	
 	pass
 	
-
 func _on_eye_1_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	pass # Replace with function body.
 

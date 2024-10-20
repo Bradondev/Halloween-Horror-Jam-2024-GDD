@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=3 uid="uid://dfk3xs1oufwne"]
+[gd_scene load_steps=123 format=3 uid="uid://dfk3xs1oufwne"]
 
 [ext_resource type="Script" path="res://MainSceneCode.gd" id="1_gnvie"]
 [ext_resource type="Shader" path="res://VideoEffect.gdshader" id="1_ln5qv"]
@@ -23,8 +23,10 @@
 [ext_resource type="Texture2D" uid="uid://cpvi46coywrfb" path="res://mouth-stage4.png" id="10_50alp"]
 [ext_resource type="Texture2D" uid="uid://dgy7frltkgao7" path="res://eyemid.png" id="10_sd7ph"]
 [ext_resource type="Texture2D" uid="uid://bs4mrmq2kao1c" path="res://mouth-stage5.png" id="11_00ta4"]
+[ext_resource type="Texture2D" uid="uid://dk4fc37c7oixv" path="res://damaged-1.png" id="11_47ddv"]
 [ext_resource type="Texture2D" uid="uid://mj71ea7oky5" path="res://eyeright.png" id="11_h2d60"]
 [ext_resource type="Texture2D" uid="uid://bqvpb1bogexvj" path="res://arms5.png" id="12_pe6gb"]
+[ext_resource type="Texture2D" uid="uid://c2xhfudttu181" path="res://damaged-2.png" id="12_ypg1x"]
 [ext_resource type="Texture2D" uid="uid://ba40kafagl4x" path="res://tremble001.png" id="14_bvsoi"]
 [ext_resource type="Texture2D" uid="uid://b5va6q81stvei" path="res://arms1.png" id="14_tvslc"]
 [ext_resource type="Texture2D" uid="uid://docex50qjt5ju" path="res://arms2.png" id="15_q4t5l"]
@@ -55,17 +57,48 @@
 [ext_resource type="Texture2D" uid="uid://dxbb7jrd0ccv2" path="res://shakeFrame/tremble017.png" id="53_2ybw6"]
 [ext_resource type="Texture2D" uid="uid://54bn2gq11e27" path="res://shakeFrame/tremble018.png" id="54_4juwg"]
 [ext_resource type="Texture2D" uid="uid://dsnyusvuweb74" path="res://shakeFrame/tremble019.png" id="55_i2n86"]
+[ext_resource type="Texture2D" uid="uid://dshlbwyf32qhf" path="res://clawShake/quivering/quiver001.png" id="55_jose7"]
 [ext_resource type="Texture2D" uid="uid://dbq41s07vc851" path="res://shakeFrame/tremble020.png" id="56_1knw5"]
+[ext_resource type="Texture2D" uid="uid://bfkeabas6i0ho" path="res://clawShake/quivering/quiver002.png" id="56_10yiu"]
+[ext_resource type="Texture2D" uid="uid://csse1nkf720jm" path="res://clawShake/quivering/quiver003.png" id="57_2fg3j"]
 [ext_resource type="Texture2D" uid="uid://d3v1juaxhewdu" path="res://shakeFrame/tremble021.png" id="57_fwbwn"]
 [ext_resource type="Texture2D" uid="uid://d1fa8ey7erfyo" path="res://shakeFrame/tremble022.png" id="58_011q3"]
+[ext_resource type="Texture2D" uid="uid://dnxh6j8bjmq2c" path="res://clawShake/quivering/quiver004.png" id="58_b4i0u"]
+[ext_resource type="Texture2D" uid="uid://2kmewy6gnsx0" path="res://clawShake/quivering/quiver005.png" id="59_erkdt"]
 [ext_resource type="Texture2D" uid="uid://cq4w7lsjvffiy" path="res://shakeFrame/tremble023.png" id="59_x2tu0"]
 [ext_resource type="Texture2D" uid="uid://br3dj4y6cb68p" path="res://shakeFrame/tremble024.png" id="60_6pu4a"]
+[ext_resource type="Texture2D" uid="uid://qu1rk4gc1jte" path="res://clawShake/quivering/quiver006.png" id="60_b1mqn"]
+[ext_resource type="Texture2D" uid="uid://c684pdu6qqyng" path="res://clawShake/quivering/quiver007.png" id="61_4c8sl"]
 [ext_resource type="Texture2D" uid="uid://kv8fe7fqy6gb" path="res://shakeFrame/tremble025.png" id="61_cegtl"]
+[ext_resource type="Texture2D" uid="uid://dpd8xrxoq0sre" path="res://clawShake/quivering/quiver008.png" id="62_7rpej"]
 [ext_resource type="Texture2D" uid="uid://ck1gnagggpspv" path="res://shakeFrame/tremble026.png" id="62_fr43s"]
+[ext_resource type="Texture2D" uid="uid://eypra1k0iinv" path="res://clawShake/quivering/quiver009.png" id="63_7sljy"]
 [ext_resource type="Texture2D" uid="uid://bboiuckyylsd6" path="res://shakeFrame/tremble027.png" id="63_p6qg8"]
 [ext_resource type="Texture2D" uid="uid://cnb71xxhjjhwk" path="res://shakeFrame/tremble028.png" id="64_34i3e"]
+[ext_resource type="Texture2D" uid="uid://bha5ca8w2tvos" path="res://clawShake/quivering/quiver010.png" id="64_o87b7"]
+[ext_resource type="Texture2D" uid="uid://u6k3smtdsrbh" path="res://clawShake/quivering/quiver011.png" id="65_5bmbb"]
 [ext_resource type="Texture2D" uid="uid://c85vliaow5yx1" path="res://shakeFrame/tremble029.png" id="65_y4bmt"]
 [ext_resource type="Texture2D" uid="uid://sc37rh0k30wj" path="res://shakeFrame/tremble030.png" id="66_nd5vi"]
+[ext_resource type="Texture2D" uid="uid://carsgise2yk43" path="res://clawShake/quivering/quiver012.png" id="66_pn6l7"]
+[ext_resource type="Texture2D" uid="uid://esu0vpjqjpsg" path="res://clawShake/quivering/quiver013.png" id="67_cjhfd"]
+[ext_resource type="Texture2D" uid="uid://dvlr3qo7pcvfh" path="res://clawShake/quivering/quiver014.png" id="68_6aa07"]
+[ext_resource type="Texture2D" uid="uid://b2l874khq4icc" path="res://clawShake/quivering/quiver015.png" id="69_tco51"]
+[ext_resource type="Texture2D" uid="uid://c4psobj1h7cr4" path="res://clawShake/quivering/quiver016.png" id="70_raeud"]
+[ext_resource type="Texture2D" uid="uid://kliux4rsj2if" path="res://clawShake/quivering/quiver017.png" id="71_2f4lr"]
+[ext_resource type="Texture2D" uid="uid://dgaoub4sptrwc" path="res://clawShake/quivering/quiver018.png" id="72_ngmqb"]
+[ext_resource type="Texture2D" uid="uid://uya40ssp8yc3" path="res://clawShake/quivering/quiver019.png" id="73_by8j2"]
+[ext_resource type="Texture2D" uid="uid://cxmkjxnmup747" path="res://clawShake/quivering/quiver020.png" id="74_h0ndc"]
+[ext_resource type="Texture2D" uid="uid://r1op2iqaia2g" path="res://clawShake/quivering/quiver021.png" id="75_6m3sd"]
+[ext_resource type="Texture2D" uid="uid://c85t2b2g0m7ki" path="res://clawShake/quivering/quiver022.png" id="76_cmwya"]
+[ext_resource type="Texture2D" uid="uid://bd3atydhaoiri" path="res://clawShake/quivering/quiver023.png" id="77_c1w3i"]
+[ext_resource type="Texture2D" uid="uid://dhi22x2s1qyn0" path="res://clawShake/quivering/quiver024.png" id="78_3go0n"]
+[ext_resource type="Texture2D" uid="uid://0pwyex2pth13" path="res://clawShake/quivering/quiver025.png" id="79_dlt5s"]
+[ext_resource type="Texture2D" uid="uid://dhxa7l6coblar" path="res://clawShake/quivering/quiver026.png" id="80_t80yc"]
+[ext_resource type="Texture2D" uid="uid://cqj4vth0mnuqw" path="res://clawShake/quivering/quiver027.png" id="81_8xs2h"]
+[ext_resource type="Texture2D" uid="uid://d0b86brqbqtm6" path="res://clawShake/quivering/quiver028.png" id="82_tp8fj"]
+[ext_resource type="Texture2D" uid="uid://bekoelgo1eauk" path="res://clawShake/quivering/quiver029.png" id="83_56gyg"]
+[ext_resource type="Texture2D" uid="uid://btl1eesmnxuan" path="res://clawShake/quivering/quiver030.png" id="84_lsrlq"]
+[ext_resource type="AudioStream" uid="uid://cku4615yj032n" path="res://Sounds/249964__alienxxx__radio_cairo_white_noise.wav" id="96_q6rdr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_en25p"]
 shader = ExtResource("1_ln5qv")
@@ -761,7 +794,105 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 8.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rufrm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("55_jose7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_10yiu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57_2fg3j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("58_b4i0u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("59_erkdt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("60_b1mqn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_4c8sl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("62_7rpej")
+}, {
+"duration": 1.0,
+"texture": ExtResource("63_7sljy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("64_o87b7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("65_5bmbb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66_pn6l7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("67_cjhfd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("68_6aa07")
+}, {
+"duration": 1.0,
+"texture": ExtResource("69_tco51")
+}, {
+"duration": 1.0,
+"texture": ExtResource("70_raeud")
+}, {
+"duration": 1.0,
+"texture": ExtResource("71_2f4lr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("72_ngmqb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("73_by8j2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("74_h0ndc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("75_6m3sd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("76_cmwya")
+}, {
+"duration": 1.0,
+"texture": ExtResource("77_c1w3i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("78_3go0n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("79_dlt5s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("80_t80yc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("81_8xs2h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("82_tp8fj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("83_56gyg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("84_lsrlq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
 }]
 
 [sub_resource type="Animation" id="Animation_jvvk6"]
@@ -900,6 +1031,18 @@ libraries = {
 "": SubResource("AnimationLibrary_4wtgf")
 }
 
+[node name="1" type="TextureRect" parent="UiAndEffect"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("11_47ddv")
+
+[node name="2" type="TextureRect" parent="UiAndEffect"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("12_ypg1x")
+
 [node name="Player" type="Control" parent="." node_paths=PackedStringArray("animation_player", "attack", "animated_sprite_2d", "effects", "gasp", "parries")]
 layout_mode = 3
 anchors_preset = 0
@@ -929,6 +1072,7 @@ armsSound3 = NodePath("../short mic wave static")
 short_mic_wave_static = NodePath("../short mic wave static")
 
 [node name="Screen1" type="Control" parent="." groups=["Screen"]]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -969,7 +1113,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Front" type="TextureRect" parent="Screen1" node_paths=PackedStringArray("player", "shake_teeth", "timer", "attack_time", "ParryArea", "ArrayOfScreen", "base_screen", "end", "middle", "eye_1", "monster_maneger", "armsSound3", "squelching", "lamb_chop_speed")]
+[node name="Front" type="TextureRect" parent="Screen1" node_paths=PackedStringArray("player", "shake_teeth", "timer", "attack_time", "ParryArea", "ArrayOfScreen", "base_screen", "end", "middle", "eye_1", "monster_maneger", "armsSound3", "squelching", "lamb_chop_speed", "shake", "white_noise")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -995,13 +1139,17 @@ monster_maneger = NodePath("../../MonsterManeger")
 armsSound3 = NodePath("../../Arms3")
 squelching = NodePath("../../Squelching")
 lamb_chop_speed = NodePath("../../Lamb Chop Speed")
+shake = NodePath("shake")
+white_noise = NodePath("../../WhiteNoise")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Screen1/Front"]
+[node name="shake" type="AnimatedSprite2D" parent="Screen1/Front"]
+visible = false
 z_index = 2
 position = Vector2(641, 361)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_gvelt")
-frame_progress = 0.415231
+autoplay = "default"
+frame_progress = 0.399927
 
 [node name="preAttack" type="Timer" parent="Screen1/Front"]
 wait_time = 2.0
@@ -1045,7 +1193,6 @@ polygon = PackedVector2Array(459, 363, 407, 441, 470, 498, 675, 510, 846, 463, 9
 polygon = PackedVector2Array(266, 172, 262, 365, 294, 597, 415, 653, 681, 661, 922, 654, 1038, 576, 1066, 156, 998, 100, 904, 67, 666, 57, 502, 51, 388, 83)
 
 [node name="Screen2" type="Control" parent="." groups=["Screen"]]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -1132,7 +1279,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="End" type="TextureRect" parent="Sreen3" node_paths=PackedStringArray("ArrayOfScreen", "armsSound3", "squelching", "lamb_chop_speed", "base_screen", "timer", "attack_time", "player", "ParryArea", "end", "middle", "eye_1", "monster_maneger")]
+[node name="End" type="TextureRect" parent="Sreen3" node_paths=PackedStringArray("ArrayOfScreen", "armsSound3", "squelching", "lamb_chop_speed", "white_noise", "base_screen", "timer", "attack_time", "player", "shake", "ParryArea", "end", "middle", "eye_1", "monster_maneger")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1146,11 +1293,13 @@ ArrayOfScreen = [NodePath(""), NodePath(""), NodePath(""), NodePath("")]
 armsSound3 = NodePath("../../Arms3")
 squelching = NodePath("../../Squelching")
 lamb_chop_speed = NodePath("../../Lamb Chop Speed")
+white_noise = NodePath("../../WhiteNoise")
 base_screen = NodePath("../..")
 ListOfarms = Array[Texture2D]([ExtResource("14_tvslc"), ExtResource("15_q4t5l"), ExtResource("16_8pc7j"), ExtResource("12_pe6gb"), ExtResource("17_xw832")])
 timer = NodePath("preAttack")
 attack_time = NodePath("AttackTime")
 player = NodePath("../../Player")
+shake = NodePath("shake")
 ParryArea = NodePath("ParryedArea")
 end = NodePath(".")
 middle = NodePath("../../Screen4/middle")
@@ -1177,11 +1326,18 @@ wait_time = 0.5
 one_shot = true
 
 [node name="ParryedArea" type="Area2D" parent="Sreen3/End"]
-visible = false
 monitorable = false
 
 [node name="eye1" type="CollisionPolygon2D" parent="Sreen3/End/ParryedArea"]
 polygon = PackedVector2Array(-2, -4, 0, 721, 1283, 723, 1289, -1, 382, 2)
+
+[node name="shake" type="AnimatedSprite2D" parent="Sreen3/End"]
+visible = false
+position = Vector2(641, 359)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_rufrm")
+autoplay = "default"
+frame_progress = 0.45684
 
 [node name="Screen4" type="Control" parent="." groups=["Screen"]]
 visible = false
@@ -1323,6 +1479,10 @@ stream = ExtResource("39_rd0ms")
 
 [node name="parries" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("36_2bajd")
+
+[node name="WhiteNoise" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("96_q6rdr")
+volume_db = -12.86
 
 [node name="shakeTeeth" type="AnimationPlayer" parent="."]
 libraries = {

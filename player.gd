@@ -6,7 +6,14 @@ signal  GameOver
 signal Defended
 signal Attacked
 signal Turn(int)
-var Health: int =0
+var Health: int =0:
+	set(value):
+		Health = value
+		if Health == 2:
+			$"../UiAndEffect/1".visible = true
+		if Health == 1:
+			$"../UiAndEffect/1".visible = false
+			$"../UiAndEffect/2".visible = true
 @export var animation_player: AnimationPlayer 
 @export var attack: AnimationPlayer
 @export var animated_sprite_2d: AnimatedSprite2D 

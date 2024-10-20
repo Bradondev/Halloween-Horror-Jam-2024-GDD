@@ -10,6 +10,7 @@ var  CurrentScreen:Control
 @export var armsSound3: AudioStreamPlayer 
 @export var squelching: AudioStreamPlayer
 @export var lamb_chop_speed: AudioStreamPlayer 
+@export var white_noise: AudioStreamPlayer
 
 
 var CurrentScreenIndex: int = 0
@@ -18,6 +19,7 @@ var CurrentScreenIndex: int = 0
 @export var timer: Timer 
 @export var attack_time: Timer 
 @export var player: Control
+@export var shake: AnimatedSprite2D 
 
 func  _ready() -> void:
 	CurrentScreen = get_parent()
@@ -73,6 +75,9 @@ var BeenDef: bool = false
 
 func  CheckIfPlayerIsInSameView():
 	if base_screen.CurrentScreen == CurrentScreen:
+		if Ticks >=3:
+			white_noise.play()
+		else :white_noise.stop()
 		RiseClaw(1)
 		pass
 	
@@ -90,11 +95,11 @@ func  RiseClaw(dir:int =0)->void:
 		PlaySound(armsSound3,7,2)
 		if BeenDef:
 			ReadyMouthAttack()
-
+			shake.visible = true
 		if !BeenDef:
 			Ticks+=1
 			ReadyMouthAttack()
-		
+			shake.visible = true
 	
 	
 	SetMouthSprite()
@@ -135,14 +140,14 @@ func MouthAttack():
 	texture = ListOfarms[0]
 	Ticks = 0
 	IsAttacking = false
-	
+	shake.visible = false
 	pass
 	
 func  MouthParryed():
 	timer.stop()
 	attack_time.stop()
 	texture = ListOfarms[0]
-	
+	shake.visible = false
 	eye_1.monitoring = false
 	
 	Ticks = 0
