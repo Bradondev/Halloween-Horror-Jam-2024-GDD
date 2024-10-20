@@ -6,7 +6,7 @@ var Health:int =1
 var CurrentIndex: int = 0
 @export var ArrayOfScreen: Array[CanvasLayer]
 var SwitchingScreen: bool = false
-var  CurrentScreen: CanvasLayer 
+var  CurrentScreen:Control
 @export var armsSound3: AudioStreamPlayer 
 @export var squelching: AudioStreamPlayer
 @export var lamb_chop_speed: AudioStreamPlayer 

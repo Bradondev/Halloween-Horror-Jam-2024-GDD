@@ -1,9 +1,9 @@
 extends CanvasLayer
-@export var screen_1: CanvasLayer
-@export var screen_2: CanvasLayer 
+@export var screen_1: Control
+@export var screen_2: Control
 
-@export var sreen_3: CanvasLayer 
-@export var screen_4: CanvasLayer
+@export var sreen_3: Control
+@export var screen_4: Control
 
 @export var armsSound3: AudioStreamPlayer 
 @export var squelching: AudioStreamPlayer
@@ -26,14 +26,14 @@ var EyesKilled: int = 0:
 		
 
 
-var  CurrentScreen: CanvasLayer 
+var  CurrentScreen: Control
 var CurrentScreenIndex: int = 0
 @export var end: TextureRect 
 @export var effects: AnimationPlayer 
 
 
-@export var GameOverScreen: CanvasLayer
-@export var WinScene: CanvasLayer
+@export var GameOverScreen: Control
+@export var WinScene: Control
 signal TurnDone
 func  _ready() -> void:
 	CurrentScreen = screen_1

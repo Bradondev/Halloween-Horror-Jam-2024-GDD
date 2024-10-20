@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ba40kafagl4x"
-path="res://.godot/imported/tremble001.png-339d46d954c8d663483735b5a73a1885.ctex"
+uid="uid://cqj4vth0mnuqw"
+path="res://.godot/imported/quiver027.png-88291883fbf6354ea42ef548fa4fcb44.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://shakeFrame/tremble001.png"
-dest_files=["res://.godot/imported/tremble001.png-339d46d954c8d663483735b5a73a1885.ctex"]
+source_file="res://clawShake/quivering/quiver027.png"
+dest_files=["res://.godot/imported/quiver027.png-88291883fbf6354ea42ef548fa4fcb44.ctex"]
 
 [params]
 

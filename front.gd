@@ -14,7 +14,7 @@ signal GotParry
 @export var ParryArea: Area2D
 @export var ArrayOfScreen: Array[CanvasLayer]
 var SwitchingScreen: bool = false
-var  CurrentScreen: CanvasLayer 
+var  CurrentScreen: Control
 
 var CurrentScreenIndex: int = 0
 @export var base_screen: CanvasLayer
@@ -104,14 +104,16 @@ func  SetMouthSprite()->void:
 		
 	if  Ticks <=2 :
 		texture = ListOfMouths[3]
-		
-		
+		shake_teeth.play("Shaketeeth")
+		return
+	shake_teeth.stop()
+
 		
 func  ReadyMouthAttack():
 	IsAttacking = true
 	ParryArea.monitoring = true
 	timer.start()	
-	shake_teeth.play("Shaketeeth")
+	
 	var WasParryed = await GotParry
 	
 	if WasParryed: 
@@ -151,6 +153,7 @@ func  MouthParryed():
 	
 	Ticks = 10
 	IsAttacking = false
+	SetMouthSprite()
 	pass
 
 

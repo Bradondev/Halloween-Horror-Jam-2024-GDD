@@ -259,10 +259,17 @@ shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 0.0
 
-[node name="Control" type="CanvasLayer"]
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="parry" type="RichTextLabel" parent="."]
 z_index = 3
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -282,6 +289,7 @@ fit_content = true
 
 [node name="parry3" type="RichTextLabel" parent="."]
 z_index = 3
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -302,6 +310,7 @@ scroll_active = false
 [node name="ColorRect2" type="ColorRect" parent="."]
 z_index = 1
 material = SubResource("ShaderMaterial_m4uux")
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -310,6 +319,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -318,6 +328,7 @@ grow_vertical = 2
 texture = ExtResource("2_x1rfe")
 
 [node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

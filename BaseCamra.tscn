@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://dfk3xs1oufwne"]
+[gd_scene load_steps=89 format=3 uid="uid://dfk3xs1oufwne"]
 
 [ext_resource type="Script" path="res://MainSceneCode.gd" id="1_gnvie"]
 [ext_resource type="Shader" path="res://VideoEffect.gdshader" id="1_ln5qv"]
@@ -25,7 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://bs4mrmq2kao1c" path="res://mouth-stage5.png" id="11_00ta4"]
 [ext_resource type="Texture2D" uid="uid://mj71ea7oky5" path="res://eyeright.png" id="11_h2d60"]
 [ext_resource type="Texture2D" uid="uid://bqvpb1bogexvj" path="res://arms5.png" id="12_pe6gb"]
-[ext_resource type="Texture2D" uid="uid://ba40kafagl4x" path="res://shakeFrame/tremble001.png" id="14_bvsoi"]
+[ext_resource type="Texture2D" uid="uid://ba40kafagl4x" path="res://tremble001.png" id="14_bvsoi"]
 [ext_resource type="Texture2D" uid="uid://b5va6q81stvei" path="res://arms1.png" id="14_tvslc"]
 [ext_resource type="Texture2D" uid="uid://docex50qjt5ju" path="res://arms2.png" id="15_q4t5l"]
 [ext_resource type="Texture2D" uid="uid://d0c2u7ujqlqsn" path="res://arms3.png" id="16_8pc7j"]
@@ -669,13 +669,107 @@ shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 0.0
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_gvelt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("38_pucn2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_w8yhq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_58pu4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_vdcpl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_a8jdn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_kh6qs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_6s8ko")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_ehbc0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_15bwu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_it01x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_85ekb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_fwcic")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_nifgt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_y2x68")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_vnx2v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_2ybw6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_4juwg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_i2n86")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_1knw5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57_fwbwn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("58_011q3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("59_x2tu0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("60_6pu4a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_cegtl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("62_fr43s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("63_p6qg8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("64_34i3e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("65_y4bmt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66_nd5vi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="Animation" id="Animation_jvvk6"]
 length = 0.001
 
 [sub_resource type="Animation" id="Animation_rphdo"]
 resource_name = "Shaketeeth"
 length = 3.0
-loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -827,17 +921,24 @@ script = ExtResource("3_j0cqo")
 front = NodePath("../Screen1/Front")
 middle = NodePath("../Screen4/middle")
 end = NodePath("../Sreen3/End")
-screen_1 = NodePath("../Screen1")
-screen_2 = NodePath("../Screen2")
-sreen_3 = NodePath("../Sreen3")
-screen_4 = NodePath("../Screen4")
+screen_1 = NodePath("")
+screen_2 = NodePath("")
+sreen_3 = NodePath("")
+screen_4 = NodePath("")
 armsSound3 = NodePath("../short mic wave static")
 short_mic_wave_static = NodePath("../short mic wave static")
 
-[node name="Screen1" type="CanvasLayer" parent="." groups=["Screen"]]
-visible = false
+[node name="Screen1" type="Control" parent="." groups=["Screen"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="Screen1"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -848,6 +949,7 @@ texture = ExtResource("4_awa1b")
 [node name="ColorRect" type="ColorRect" parent="Screen1"]
 z_index = 1
 material = SubResource("ShaderMaterial_kcp4y")
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -858,6 +960,7 @@ mouse_filter = 2
 [node name="ScreenShift" type="ColorRect" parent="Screen1"]
 modulate = Color(0.972549, 0.972549, 0.972549, 0)
 z_index = 1
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -867,6 +970,7 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Front" type="TextureRect" parent="Screen1" node_paths=PackedStringArray("player", "shake_teeth", "timer", "attack_time", "ParryArea", "ArrayOfScreen", "base_screen", "end", "middle", "eye_1", "monster_maneger", "armsSound3", "squelching", "lamb_chop_speed")]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -874,14 +978,14 @@ offset_top = -2.0
 offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("6_t7q0d")
+texture = ExtResource("14_bvsoi")
 script = ExtResource("4_wi2lc")
 player = NodePath("../../Player")
 shake_teeth = NodePath("../../shakeTeeth")
 timer = NodePath("preAttack")
 attack_time = NodePath("AttackTime")
 ParryArea = NodePath("ParryedArea")
-ArrayOfScreen = [NodePath(".."), NodePath("../../Screen2"), NodePath("../../Sreen3"), NodePath("../../Screen4")]
+ArrayOfScreen = [NodePath(""), NodePath(""), NodePath(""), NodePath("")]
 base_screen = NodePath("../..")
 end = NodePath("../../Sreen3/End")
 middle = NodePath("../../Screen4/middle")
@@ -891,6 +995,13 @@ monster_maneger = NodePath("../../MonsterManeger")
 armsSound3 = NodePath("../../Arms3")
 squelching = NodePath("../../Squelching")
 lamb_chop_speed = NodePath("../../Lamb Chop Speed")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Screen1/Front"]
+z_index = 2
+position = Vector2(641, 361)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_gvelt")
+frame_progress = 0.415231
 
 [node name="preAttack" type="Timer" parent="Screen1/Front"]
 wait_time = 2.0
@@ -933,9 +1044,18 @@ polygon = PackedVector2Array(459, 363, 407, 441, 470, 498, 675, 510, 846, 463, 9
 [node name="eye1" type="CollisionPolygon2D" parent="Screen1/Front/ParryedArea"]
 polygon = PackedVector2Array(266, 172, 262, 365, 294, 597, 415, 653, 681, 661, 922, 654, 1038, 576, 1066, 156, 998, 100, 904, 67, 666, 57, 502, 51, 388, 83)
 
-[node name="Screen2" type="CanvasLayer" parent="." groups=["Screen"]]
+[node name="Screen2" type="Control" parent="." groups=["Screen"]]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="Screen2"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -946,6 +1066,7 @@ texture = ExtResource("4_awa1b")
 [node name="ColorRect" type="ColorRect" parent="Screen2"]
 z_index = 1
 material = SubResource("ShaderMaterial_kcp4y")
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -956,6 +1077,7 @@ mouse_filter = 2
 [node name="ScreenShift" type="ColorRect" parent="Screen2"]
 modulate = Color(0.972549, 0.972549, 0.972549, 0)
 z_index = 1
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -968,10 +1090,18 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Sreen3" type="CanvasLayer" parent="." groups=["Screen"]]
+[node name="Sreen3" type="Control" parent="." groups=["Screen"]]
 visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="Sreen3"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -982,6 +1112,7 @@ texture = ExtResource("4_awa1b")
 [node name="ColorRect" type="ColorRect" parent="Sreen3"]
 z_index = 1
 material = SubResource("ShaderMaterial_kcp4y")
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -992,6 +1123,7 @@ mouse_filter = 2
 [node name="ScreenShift" type="ColorRect" parent="Sreen3"]
 modulate = Color(0.972549, 0.972549, 0.972549, 0)
 z_index = 1
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1001,6 +1133,7 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="End" type="TextureRect" parent="Sreen3" node_paths=PackedStringArray("ArrayOfScreen", "armsSound3", "squelching", "lamb_chop_speed", "base_screen", "timer", "attack_time", "player", "ParryArea", "end", "middle", "eye_1", "monster_maneger")]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1009,7 +1142,7 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("14_tvslc")
 script = ExtResource("6_8pign")
-ArrayOfScreen = [NodePath("../../Screen1"), NodePath("../../Screen2"), NodePath(".."), NodePath("../../Screen4")]
+ArrayOfScreen = [NodePath(""), NodePath(""), NodePath(""), NodePath("")]
 armsSound3 = NodePath("../../Arms3")
 squelching = NodePath("../../Squelching")
 lamb_chop_speed = NodePath("../../Lamb Chop Speed")
@@ -1044,15 +1177,24 @@ wait_time = 0.5
 one_shot = true
 
 [node name="ParryedArea" type="Area2D" parent="Sreen3/End"]
+visible = false
 monitorable = false
 
 [node name="eye1" type="CollisionPolygon2D" parent="Sreen3/End/ParryedArea"]
 polygon = PackedVector2Array(-2, -4, 0, 721, 1283, 723, 1289, -1, 382, 2)
 
-[node name="Screen4" type="CanvasLayer" parent="." groups=["Screen"]]
+[node name="Screen4" type="Control" parent="." groups=["Screen"]]
 visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="Screen4"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1063,6 +1205,7 @@ texture = ExtResource("4_awa1b")
 [node name="ColorRect" type="ColorRect" parent="Screen4"]
 z_index = 1
 material = SubResource("ShaderMaterial_kcp4y")
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1073,6 +1216,7 @@ mouse_filter = 2
 [node name="ScreenShift" type="ColorRect" parent="Screen4"]
 modulate = Color(0.972549, 0.972549, 0.972549, 0)
 z_index = 1
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1082,6 +1226,7 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="middle" type="TextureRect" parent="Screen4" node_paths=PackedStringArray("base_screen", "monster_maneger", "player", "eye_1HurtBox", "eye_2HurtBox", "eye_3HurtBox", "eye_1_text", "eye_2_text", "eye_3_text", "end", "armsSound3", "squelching", "lamb_chop_speed", "ArrayOfScreen")]
+layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.002
 anchor_bottom = 1.0
@@ -1102,7 +1247,7 @@ end = NodePath("../../Sreen3/End")
 armsSound3 = NodePath("../../Arms3")
 squelching = NodePath("../../Squelching")
 lamb_chop_speed = NodePath("../../Lamb Chop Speed")
-ArrayOfScreen = [NodePath("../../Screen1"), NodePath("../../Screen2"), NodePath("../../Sreen3"), NodePath("..")]
+ArrayOfScreen = [NodePath(""), NodePath(""), NodePath(""), NodePath("")]
 
 [node name="eye1Text" type="TextureRect" parent="Screen4/middle"]
 layout_mode = 1
