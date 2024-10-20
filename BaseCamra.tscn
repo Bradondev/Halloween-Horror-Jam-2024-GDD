@@ -1,8 +1,7 @@
-[gd_scene load_steps=41 format=3 uid="uid://dfk3xs1oufwne"]
+[gd_scene load_steps=45 format=3 uid="uid://dfk3xs1oufwne"]
 
 [ext_resource type="Script" path="res://MainSceneCode.gd" id="1_gnvie"]
 [ext_resource type="Shader" path="res://VideoEffect.gdshader" id="1_ln5qv"]
-[ext_resource type="PackedScene" uid="uid://du8ya5bnt05ut" path="res://start_phase.tscn" id="2_fimpv"]
 [ext_resource type="Shader" path="res://GlithcEffect.gdshader" id="2_mdce0"]
 [ext_resource type="Script" path="res://player.gd" id="2_tx5s3"]
 [ext_resource type="Script" path="res://monster_maneger.gd" id="3_j0cqo"]
@@ -30,6 +29,30 @@
 [ext_resource type="Texture2D" uid="uid://docex50qjt5ju" path="res://arms2.png" id="15_q4t5l"]
 [ext_resource type="Texture2D" uid="uid://d0c2u7ujqlqsn" path="res://arms3.png" id="16_8pc7j"]
 [ext_resource type="Texture2D" uid="uid://qmtf7ves3r8e" path="res://arms4.png" id="17_xw832"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_en25p"]
+shader = ExtResource("1_ln5qv")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.455
+shader_parameter/scanlines_width = 0.0
+shader_parameter/grille_opacity = 0.021
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = false
+shader_parameter/roll = false
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.0
+shader_parameter/noise_speed = 4.715
+shader_parameter/static_noise_intensity = 0.0
+shader_parameter/aberration = 4.75e-08
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 0.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.197
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yik1d"]
 shader = ExtResource("2_mdce0")
@@ -288,6 +311,72 @@ _data = {
 "RESET": SubResource("Animation_dwjxg")
 }
 
+[sub_resource type="Animation" id="Animation_lxjf0"]
+resource_name = "BlockFlash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect2:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("flash:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_qpyy0"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_wygaq"]
+resource_name = "AttackFlash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect2:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Attackflash2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4wtgf"]
+_data = {
+"AttackFlash": SubResource("Animation_wygaq"),
+"BlockFlash": SubResource("Animation_lxjf0"),
+"RESET": SubResource("Animation_qpyy0")
+}
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kcp4y"]
 shader = ExtResource("1_ln5qv")
 shader_parameter/overlay = true
@@ -312,19 +401,50 @@ shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 0.5
 
-[node name="BaseScreen" type="CanvasLayer" node_paths=PackedStringArray("screen_1", "screen_2", "sreen_3", "screen_4", "end")]
+[node name="BaseScreen" type="CanvasLayer" node_paths=PackedStringArray("screen_1", "screen_2", "sreen_3", "screen_4", "end", "effects")]
 script = ExtResource("1_gnvie")
 screen_1 = NodePath("Screen1")
 screen_2 = NodePath("Screen2")
 sreen_3 = NodePath("Sreen3")
 screen_4 = NodePath("Screen4")
 end = NodePath("Sreen3/End")
+effects = NodePath("UiAndEffect/Effects")
 
 [node name="UiAndEffect" type="CanvasLayer" parent="."]
 layer = 2
 
-[node name="StartPhase" parent="UiAndEffect" instance=ExtResource("2_fimpv")]
+[node name="flash" type="ColorRect" parent="UiAndEffect"]
 visible = false
+z_index = -1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.182, 0.243967, 0.52, 0.419608)
+
+[node name="Attackflash2" type="ColorRect" parent="UiAndEffect"]
+visible = false
+z_index = -1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0.00999999, 0.00999999, 0.419608)
+
+[node name="ColorRect2" type="ColorRect" parent="UiAndEffect"]
+visible = false
+z_index = 1
+material = SubResource("ShaderMaterial_en25p")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="ColorRect" type="ColorRect" parent="UiAndEffect"]
 visible = false
@@ -372,7 +492,12 @@ libraries = {
 "": SubResource("AnimationLibrary_kqe83")
 }
 
-[node name="Player" type="Control" parent="." node_paths=PackedStringArray("animation_player", "attack", "animated_sprite_2d")]
+[node name="Effects" type="AnimationPlayer" parent="UiAndEffect"]
+libraries = {
+"": SubResource("AnimationLibrary_4wtgf")
+}
+
+[node name="Player" type="Control" parent="." node_paths=PackedStringArray("animation_player", "attack", "animated_sprite_2d", "effects")]
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 2
@@ -380,6 +505,7 @@ script = ExtResource("2_tx5s3")
 animation_player = NodePath("../UiAndEffect/AnimationPlayer")
 attack = NodePath("../UiAndEffect/attack")
 animated_sprite_2d = NodePath("../UiAndEffect/AnimatedSprite2D")
+effects = NodePath("../UiAndEffect/Effects")
 
 [node name="MonsterManeger" type="Control" parent="." node_paths=PackedStringArray("front", "middle", "end", "screen_1", "screen_2", "sreen_3", "screen_4")]
 layout_mode = 3

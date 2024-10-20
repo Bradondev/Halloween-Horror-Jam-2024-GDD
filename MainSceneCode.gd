@@ -12,6 +12,7 @@ var SwitchingScreen: bool = false
 var  CurrentScreen: CanvasLayer 
 var CurrentScreenIndex: int = 0
 @export var end: TextureRect 
+@export var effects: AnimationPlayer 
 
 
 signal TurnDone

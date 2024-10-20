@@ -26,6 +26,7 @@ func  MoveBodyPart(Dir:int)->void:
 	var NewTween : Tween = create_tween()
 
 	NewTween.tween_property(self,"modulate",Color(1,1,1,0), .2)
+	await NewTween.finished
 	
 	
 	CurrentScreenIndex += Dir
@@ -41,6 +42,7 @@ func  MoveBodyPart(Dir:int)->void:
 	NewTween.tween_property(self,"modulate",Color(1,1,1,1), .2)
 	await NewTween.finished
 	SwitchingScreen = false
+	
 	
 
 

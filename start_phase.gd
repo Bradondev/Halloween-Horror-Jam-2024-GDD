@@ -3,7 +3,7 @@ extends Control
 @export var Pages: Array[TextureRect]
 @export var GameNode: Node
 var CurrentPage: int = 0
-# Called when the node enters the scene tree for the first time.
+# Called whn the node enters the scene tree for the first time.
 func  _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Attack"):
 		NextPage()
@@ -20,6 +20,7 @@ func  NextPage():
 func  StartGame (): 
 	visible = false
 	GameNode.process_mode = Node.PROCESS_MODE_INHERIT
+	queue_free()
 	pass
 	
 	
