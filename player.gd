@@ -6,6 +6,9 @@ signal Defended
 signal Attacked
 signal Turn(int)
 var Health: int =0
+@export var animation_player: AnimationPlayer 
+@export var attack: AnimationPlayer
+@export var animated_sprite_2d: AnimatedSprite2D 
 
 
 enum PlayerStates{Attack,Deffense,Idle}
@@ -30,11 +33,20 @@ func  _input(event: InputEvent) -> void:
 
 		
 func  Attack()->void:
-	emit_signal("Attacked")
+	animated_sprite_2d.global_position = get_viewport().get_mouse_position()
+	attack.play("Attack")
+	await  attack.animation_finished
 	
-	pass
+
 func  Defend()->void: 
-	emit_signal("Attacked")
-	pass
+	attack.play("Parry")
+	await  attack.animation_finished
+
 	
+	
+func  Takedamage()->void:
+	Health -= 1
+	animation_player.play("Glitch")
+	if Health <= 0:
+		print_debug("Player died")
 	

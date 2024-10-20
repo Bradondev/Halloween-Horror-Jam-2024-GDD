@@ -2,8 +2,9 @@ extends TextureRect
 
 var Health : int =3 
 var CurrentIndex: int = 0
-@export var base_screen: Node2D 
+@export var base_screen: CanvasLayer
 @export var monster_maneger: Control
+@export var player: Control 
 
 @export var eye_1HurtBox: Area2D
 @export var eye_2HurtBox: Area2D 
@@ -22,7 +23,7 @@ var SwitchingScreen: bool = false
 var  CurrentScreen: CanvasLayer 
 
 var CurrentScreenIndex: int = 0
-
+signal  EyeWasAttacked
 
 func  _ready() -> void:
 	CurrentScreen = get_parent()
@@ -53,23 +54,18 @@ func  MoveBodyPart(Dir:int)->void:
 	
 	
 	
-
-	
-
-
 func _on_eye_1_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if monster_maneger.MonsterMoving: return
 	if event.is_action_pressed("Attack"):
+		await player.Attack()
 		monster_maneger.MoveMonster()
 		eye_1_text.visible = false
-		
 		print_debug("eye 1 click")
 		
-
-
 func _on_eye_2_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if monster_maneger.MonsterMoving: return
 	if event.is_action_pressed("Attack"):
+		await player.Attack()
 		monster_maneger.MoveMonster()
 		eye_2_text.visible = false
 	pass # Replace with function body.
@@ -78,6 +74,7 @@ func _on_eye_2_input_event(viewport: Node, event: InputEvent, shape_idx: int) ->
 func _on_eye_3_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if monster_maneger.MonsterMoving: return
 	if event.is_action_pressed("Attack"):
+		await player.Attack()
 		monster_maneger.MoveMonster()
 		eye_3_text.visible = false
 	pass # Replace with function body.

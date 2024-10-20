@@ -1,4 +1,4 @@
-extends Node2D
+extends CanvasLayer
 @export var screen_1: CanvasLayer
 @export var screen_2: CanvasLayer 
 
@@ -11,6 +11,7 @@ var SwitchingScreen: bool = false
 
 var  CurrentScreen: CanvasLayer 
 var CurrentScreenIndex: int = 0
+@export var end: TextureRect 
 
 
 signal TurnDone
@@ -46,16 +47,20 @@ func LookThroughScreenArrary(Dir:int)->void:
 	NewTween = create_tween()
 	CurrentScreen.visible = true	
 	CurrentScreen.get_node("ScreenShift").modulate = Color(1,1,1,1)
+	end.CheckIfPlayerIsInSameView()
 	NewTween.tween_property(CurrentScreen.get_node("ScreenShift"),"modulate",Color(1,1,1,0), .2)
 	await NewTween.finished
 	
 	SwitchingScreen = false
-	emit_signal("TurnDone")
 	
-	
+	emit_signal("TurnDone")	
 			
 
 		
 		
 	pass
 		
+
+
+func _on_eye_1_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	pass # Replace with function body.

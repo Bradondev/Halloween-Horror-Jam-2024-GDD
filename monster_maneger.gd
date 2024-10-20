@@ -19,17 +19,17 @@ func  MoveMonster()->void:
 		front.MoveBodyPart(1)
 		end.MoveBodyPart(1)
 		middle.MoveBodyPart(1)
-	await get_tree().create_timer(.4).timeout
+	await get_tree().create_timer(.5).timeout
 	if  middle.CurrentScreen ==$"..".CurrentScreen:
 		front.MoveBodyPart(1)
 		end.MoveBodyPart(1)
 		middle.MoveBodyPart(1)
-	await get_tree().create_timer(.4).timeout
+	await get_tree().create_timer(.5).timeout
 	if  end.CurrentScreen ==$"..".CurrentScreen:
 		front.MoveBodyPart(1)
 		end.MoveBodyPart(1)
 		middle.MoveBodyPart(1)
-	await get_tree().create_timer(.4).timeout
+	await get_tree().create_timer(.5).timeout
 	MonsterMoving = false
 
 

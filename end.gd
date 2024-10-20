@@ -1,5 +1,7 @@
 extends TextureRect
 
+
+signal  EyeWasAttacked
 var Health:int =1
 var CurrentIndex: int = 0
 @export var ArrayOfScreen: Array[CanvasLayer]
@@ -7,9 +9,11 @@ var SwitchingScreen: bool = false
 var  CurrentScreen: CanvasLayer 
 
 var CurrentScreenIndex: int = 0
-@export var base_screen: Node2D
+@export var base_screen: Node
 @export var ListOfarms: Array[Texture2D]
-
+@export var timer: Timer 
+@export var attack_time: Timer 
+@export var player: Control
 
 func  _ready() -> void:
 	CurrentScreen = get_parent()
@@ -22,7 +26,6 @@ func  MoveBodyPart(Dir:int)->void:
 	var NewTween : Tween = create_tween()
 
 	NewTween.tween_property(self,"modulate",Color(1,1,1,0), .2)
-	await NewTween.finished
 	
 	
 	CurrentScreenIndex += Dir
@@ -40,7 +43,145 @@ func  MoveBodyPart(Dir:int)->void:
 	SwitchingScreen = false
 	
 
+
+signal GotParry
+
+
+
+@export var ParryArea: Area2D
+
+@export var end: TextureRect 
+@export var middle: TextureRect 
+
+@export var eye_1: Area2D 
+@export var monster_maneger: Control 
+var Ticks: int =0 
+
+var EyeIsOpend: bool
+var IsAttacking: bool = false
+
+var BeenDef: bool = false
+
+
+
+
+func  CheckIfPlayerIsInSameView():
+	if base_screen.CurrentScreen == CurrentScreen:
+		RiseClaw(1)
+		pass
+	
+
+func  RiseClaw(dir:int =0)->void:
 	
 	
+
+	Ticks += 1
+	
+	if Ticks >= 4: 
+		Ticks = 0
+	
+	if Ticks ==3:
+		if BeenDef:
+			ReadyMouthAttack()
+
+		if !BeenDef:
+			Ticks+=1
+			ReadyMouthAttack()
+		
+	
+	
+	SetMouthSprite()
+func  SetMouthSprite()->void:
+	texture = ListOfarms[Ticks]
+
+		
+		
+		
+func  ReadyMouthAttack():
+	IsAttacking = true
+	ParryArea.monitoring = true
+	timer.start()	
+	
+	var WasParryed = await GotParry
+	
+	if WasParryed: 
+		MouthParryed()
+	else:
+		MouthAttack()
+		return
+
+	
+		
+func MouthAttack():
+	timer.stop()
+	attack_time.start()
+	var WasParryed = await GotParry
+	
+	if WasParryed: 
+		
+		MouthParryed()
+	else:
+		print_debug("claw attack")
+		player.Takedamage()
+	
+	texture = ListOfarms[0]
+	Ticks = 0
+	IsAttacking = false
 	
 	pass
+	
+func  MouthParryed():
+	timer.stop()
+	attack_time.stop()
+	texture = ListOfarms[0]
+	
+	eye_1.monitoring = true
+	
+	Ticks = 0
+	
+	pass
+
+
+func  Reset():
+	eye_1.monitoring = false
+	ParryArea.monitoring = false
+	texture = ListOfarms[0]
+	Ticks = 0
+
+func _on_timer_timeout() -> void:
+	emit_signal("GotParry",false)
+	#MouthAttack()
+
+
+
+
+
+func _on_eye_1_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if  event.is_action_pressed("Attack")and eye_1.monitoring:
+		
+	
+		BeenDef = true
+		await player.Attack()
+		Reset()
+		MouthParryed()
+		monster_maneger.MoveMonster()
+		print_debug("eye was attack")
+		pass
+
+
+func _on_parryed_area_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if event.is_action_pressed("Defend") and IsAttacking:
+		emit_signal("GotParry",true)
+		await player.Defend()
+		
+		
+	
+		pass
+
+func _on_attack_time_timeout() -> void:
+	emit_signal("GotParry",false)
+	pass # Replace with function body.
+
+	
+	
+	
