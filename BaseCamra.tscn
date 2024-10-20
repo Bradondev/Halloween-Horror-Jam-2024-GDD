@@ -1055,7 +1055,7 @@ effects = NodePath("../UiAndEffect/Effects")
 gasp = NodePath("../gasp")
 parries = NodePath("../parries")
 
-[node name="MonsterManeger" type="Control" parent="." node_paths=PackedStringArray("front", "middle", "end", "screen_1", "screen_2", "sreen_3", "screen_4", "armsSound3", "short_mic_wave_static")]
+[node name="MonsterManeger" type="Control" parent="." node_paths=PackedStringArray("front", "middle", "end", "armsSound3", "short_mic_wave_static")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -1064,10 +1064,6 @@ script = ExtResource("3_j0cqo")
 front = NodePath("../Screen1/Front")
 middle = NodePath("../Screen4/middle")
 end = NodePath("../Sreen3/End")
-screen_1 = NodePath("")
-screen_2 = NodePath("")
-sreen_3 = NodePath("")
-screen_4 = NodePath("")
 armsSound3 = NodePath("../short mic wave static")
 short_mic_wave_static = NodePath("../short mic wave static")
 
@@ -1129,7 +1125,7 @@ shake_teeth = NodePath("../../shakeTeeth")
 timer = NodePath("preAttack")
 attack_time = NodePath("AttackTime")
 ParryArea = NodePath("ParryedArea")
-ArrayOfScreen = [NodePath(""), NodePath(""), NodePath(""), NodePath("")]
+ArrayOfScreen = [null, null, null, null]
 base_screen = NodePath("../..")
 end = NodePath("../../Sreen3/End")
 middle = NodePath("../../Screen4/middle")
@@ -1289,7 +1285,7 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("14_tvslc")
 script = ExtResource("6_8pign")
-ArrayOfScreen = [NodePath(""), NodePath(""), NodePath(""), NodePath("")]
+ArrayOfScreen = [null, null, null, null]
 armsSound3 = NodePath("../../Arms3")
 squelching = NodePath("../../Squelching")
 lamb_chop_speed = NodePath("../../Lamb Chop Speed")
@@ -1403,7 +1399,7 @@ end = NodePath("../../Sreen3/End")
 armsSound3 = NodePath("../../Arms3")
 squelching = NodePath("../../Squelching")
 lamb_chop_speed = NodePath("../../Lamb Chop Speed")
-ArrayOfScreen = [NodePath(""), NodePath(""), NodePath(""), NodePath("")]
+ArrayOfScreen = [null, null, null, null]
 
 [node name="eye1Text" type="TextureRect" parent="Screen4/middle"]
 layout_mode = 1

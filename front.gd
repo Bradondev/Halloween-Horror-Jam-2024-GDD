@@ -128,6 +128,7 @@ func  ReadyMouthAttack():
 	else:
 		MouthAttack()
 		return
+	shake.visible = false
 
 	
 		
@@ -149,7 +150,7 @@ func MouthAttack():
 	
 	Ticks = 10
 	IsAttacking = false
-	
+	shake.visible = false
 	pass
 	
 func  MouthParryed():
@@ -157,10 +158,10 @@ func  MouthParryed():
 	attack_time.stop()
 	shake_teeth.stop()
 	shake.visible = false 
-	if Def:
-		texture = ListOfMouths[0]
-	else :
+	if !Def:
 		texture = ListOfMouths[4]
+	else :
+		texture = ListOfMouths[0]
 
 	
 	eye_1.monitoring = true
