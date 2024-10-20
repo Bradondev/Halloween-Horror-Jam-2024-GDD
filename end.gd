@@ -7,6 +7,10 @@ var CurrentIndex: int = 0
 @export var ArrayOfScreen: Array[CanvasLayer]
 var SwitchingScreen: bool = false
 var  CurrentScreen: CanvasLayer 
+@export var armsSound3: AudioStreamPlayer 
+@export var squelching: AudioStreamPlayer
+@export var lamb_chop_speed: AudioStreamPlayer 
+
 
 var CurrentScreenIndex: int = 0
 @export var base_screen: Node
@@ -83,6 +87,7 @@ func  RiseClaw(dir:int =0)->void:
 		Ticks = 0
 	
 	if Ticks ==3:
+		PlaySound(armsSound3,7,2)
 		if BeenDef:
 			ReadyMouthAttack()
 
@@ -103,7 +108,7 @@ func  ReadyMouthAttack():
 	IsAttacking = true
 	ParryArea.monitoring = true
 	timer.start()	
-	
+	eye_1.monitoring = true
 	var WasParryed = await GotParry
 	
 	if WasParryed: 
@@ -117,6 +122,7 @@ func  ReadyMouthAttack():
 func MouthAttack():
 	timer.stop()
 	attack_time.start()
+
 	var WasParryed = await GotParry
 	
 	if WasParryed: 
@@ -137,7 +143,7 @@ func  MouthParryed():
 	attack_time.stop()
 	texture = ListOfarms[0]
 	
-	eye_1.monitoring = true
+	eye_1.monitoring = false
 	
 	Ticks = 0
 	
@@ -167,6 +173,9 @@ func _on_eye_1_input_event(viewport: Node, event: InputEvent, shape_idx: int) ->
 		Reset()
 		MouthParryed()
 		monster_maneger.MoveMonster()
+		PlaySound(squelching,0,0)
+		PlaySound(lamb_chop_speed,7.5,4)
+		base_screen.EyesKilled +=1
 		print_debug("eye was attack")
 		pass
 
@@ -174,6 +183,7 @@ func _on_eye_1_input_event(viewport: Node, event: InputEvent, shape_idx: int) ->
 func _on_parryed_area_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event.is_action_pressed("Defend") and IsAttacking:
 		emit_signal("GotParry",true)
+		Reset()
 		await player.Defend()
 		
 		
@@ -184,6 +194,14 @@ func _on_attack_time_timeout() -> void:
 	emit_signal("GotParry",false)
 	pass # Replace with function body.
 
+
+func  PlaySound(AudioNode:AudioStreamPlayer, form: float , Stop: float = 0):
+	AudioNode.play(form)
+	if Stop:
+		await  get_tree().create_timer(Stop).timeout
+		AudioNode.stop()
 	
+	pass
+
 	
 	

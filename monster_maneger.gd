@@ -8,6 +8,10 @@ extends Control
 @export var sreen_3: CanvasLayer 
 @export var screen_4: CanvasLayer
 
+@export var armsSound3: AudioStreamPlayer 
+@export var squelching: AudioStreamPlayer
+@export var lamb_chop_speed: AudioStreamPlayer 
+@export var short_mic_wave_static: AudioStreamPlayer 
 
 var MonsterMoving:bool = false
 
@@ -15,6 +19,7 @@ var MonsterMoving:bool = false
 
 func  MoveMonster()->void:
 	MonsterMoving = true
+	PlaySound(short_mic_wave_static,0,0)
 	if  front.CurrentScreen ==$"..".CurrentScreen:
 		front.MoveBodyPart(1)
 		end.MoveBodyPart(1)
@@ -34,5 +39,10 @@ func  MoveMonster()->void:
 
 
 	
+func  PlaySound(AudioNode:AudioStreamPlayer, form: float , Stop: float = 0):
+	AudioNode.play(form)
+	if Stop:
+		await  get_tree().create_timer(Stop).timeout
+		AudioNode.stop()
 	
 	

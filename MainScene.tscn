@@ -1,9 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://bufqo8qg5g0qn"]
+[gd_scene load_steps=5 format=3 uid="uid://bufqo8qg5g0qn"]
 
 [ext_resource type="PackedScene" uid="uid://du8ya5bnt05ut" path="res://start_phase.tscn" id="1_47lo4"]
 [ext_resource type="PackedScene" uid="uid://dfk3xs1oufwne" path="res://BaseCamra.tscn" id="1_v3quk"]
+[ext_resource type="PackedScene" uid="uid://bi360vpsqm7mx" path="res://Gameover.tscn" id="3_mtx5b"]
+[ext_resource type="PackedScene" uid="uid://cqgi6j4omrk3l" path="res://WIn credits.tscn" id="4_78jcp"]
 
 [node name="mainScene" type="Node2D"]
+
+[node name="BaseScreen" parent="." node_paths=PackedStringArray("GameOverScreen", "WinScene") instance=ExtResource("1_v3quk")]
+process_mode = 4
+GameOverScreen = NodePath("../Control2")
+WinScene = NodePath("../Control")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
@@ -13,5 +20,10 @@ offset_top = -3.0
 offset_bottom = -3.0
 GameNode = NodePath("../../BaseScreen")
 
-[node name="BaseScreen" parent="." instance=ExtResource("1_v3quk")]
-process_mode = 4
+[node name="Control2" parent="." instance=ExtResource("3_mtx5b")]
+visible = true
+
+[node name="Control" parent="." instance=ExtResource("4_78jcp")]
+process_mode = 1
+layer = 2
+visible = false

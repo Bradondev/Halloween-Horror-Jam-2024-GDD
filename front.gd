@@ -7,6 +7,7 @@ var FrontMouth: Control
 var Ticks:int = 10
 signal  EyeWasAttacked
 signal GotParry
+@export var shake_teeth: AnimationPlayer
 
 @export var timer: Timer 
 @export var attack_time: Timer 
@@ -23,6 +24,9 @@ var CurrentScreenIndex: int = 0
 @export var eye_1: Area2D 
 @export var monster_maneger: Control 
 
+@export var armsSound3: AudioStreamPlayer 
+@export var squelching: AudioStreamPlayer
+@export var lamb_chop_speed: AudioStreamPlayer 
 
 var EyeIsOpend: bool
 var IsAttacking: bool = false
@@ -85,6 +89,7 @@ func  CountDownTicks(dir:int =0)->void:
 	if Ticks ==2:
 		ReadyMouthAttack()
 		print_debug("1")
+		
 	
 	
 	
@@ -106,7 +111,7 @@ func  ReadyMouthAttack():
 	IsAttacking = true
 	ParryArea.monitoring = true
 	timer.start()	
-	
+	shake_teeth.play("Shaketeeth")
 	var WasParryed = await GotParry
 	
 	if WasParryed: 
@@ -130,6 +135,7 @@ func MouthAttack():
 		player.Takedamage()
 	
 	texture = ListOfMouths[0]
+	
 	Ticks = 10
 	IsAttacking = false
 	
@@ -138,6 +144,7 @@ func MouthAttack():
 func  MouthParryed():
 	timer.stop()
 	attack_time.stop()
+	shake_teeth.stop()
 	texture = ListOfMouths[4]
 	
 	eye_1.monitoring = true
@@ -167,7 +174,8 @@ func _on_eye_1_input_event(viewport: Node, event: InputEvent, shape_idx: int) ->
 		await player.Attack()
 		Reset()
 		monster_maneger.MoveMonster()
-		
+		end.RiseClaw(0)
+		base_screen.EyesKilled +=1
 		pass
 
 

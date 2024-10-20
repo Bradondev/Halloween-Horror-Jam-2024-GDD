@@ -5,8 +5,25 @@ extends CanvasLayer
 @export var sreen_3: CanvasLayer 
 @export var screen_4: CanvasLayer
 
-
+@export var armsSound3: AudioStreamPlayer 
+@export var squelching: AudioStreamPlayer
+@export var lamb_chop_speed: AudioStreamPlayer 
+@export var short_mic_wave_static: AudioStreamPlayer 
 var SwitchingScreen: bool = false
+
+
+
+
+var EyesKilled: int = 0:
+	set(value):
+		EyesKilled = value
+		if EyesKilled >=5:
+			PlaySound(lamb_chop_speed,13,6)
+			
+			await get_tree().create_timer(3)
+			WinGame()
+			queue_free()
+		
 
 
 var  CurrentScreen: CanvasLayer 
@@ -15,6 +32,8 @@ var CurrentScreenIndex: int = 0
 @export var effects: AnimationPlayer 
 
 
+@export var GameOverScreen: CanvasLayer
+@export var WinScene: CanvasLayer
 signal TurnDone
 func  _ready() -> void:
 	CurrentScreen = screen_1
@@ -61,7 +80,31 @@ func LookThroughScreenArrary(Dir:int)->void:
 		
 	pass
 		
-
+func  WinGame():
+	print_debug("won game")
+	WinScene.process_mode = Node.PROCESS_MODE_INHERIT
+	WinScene.visible = true
+	
+	
+	pass
+	
 
 func _on_eye_1_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	pass # Replace with function body.
+
+func  PlaySound(AudioNode:AudioStreamPlayer, form: float , Stop: float = 0):
+	AudioNode.play(form)
+	if Stop:
+		await  get_tree().create_timer(Stop).timeout
+		AudioNode.stop()
+	
+	pass
+
+	
+func _on_player_game_over() -> void:
+	GameOverScreen.process_mode = Node.PROCESS_MODE_INHERIT
+	GameOverScreen.visible  = true
+	queue_free()
+	process_mode = Node.PROCESS_MODE_DISABLED
+	
 	pass # Replace with function body.

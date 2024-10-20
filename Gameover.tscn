@@ -1,17 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://du8ya5bnt05ut"]
+[gd_scene load_steps=7 format=3 uid="uid://bi360vpsqm7mx"]
 
-[ext_resource type="Texture2D" uid="uid://cwksxq52bow0a" path="res://page6.png" id="1_c2lif"]
-[ext_resource type="Texture2D" uid="uid://bfbaygtkewl11" path="res://eyes4.png" id="1_rfwe0"]
-[ext_resource type="Script" path="res://start_phase.gd" id="1_vtrqm"]
-[ext_resource type="Texture2D" uid="uid://ccbkidjyboqp8" path="res://page1.png" id="2_sceea"]
-[ext_resource type="Texture2D" uid="uid://pkdvrdqpibpn" path="res://page5.png" id="2_ujqya"]
-[ext_resource type="Texture2D" uid="uid://1cp4hcrbavhw" path="res://page4.png" id="3_iffcp"]
-[ext_resource type="Texture2D" uid="uid://bvpycgdv0ak6g" path="res://page3.png" id="4_ekjah"]
-[ext_resource type="Texture2D" uid="uid://cc2pu40efm5cv" path="res://page2.png" id="5_nqq60"]
-[ext_resource type="Texture2D" uid="uid://sr316thfsgjx" path="res://page0.png" id="7_irc10"]
-[ext_resource type="AudioStream" uid="uid://bg6u13qocp6er" path="res://Sounds/188485__rofd__flip-page.wav" id="10_sy4ia"]
+[ext_resource type="Script" path="res://GameOver.gd" id="1_rniu8"]
+[ext_resource type="FontFile" uid="uid://d34xjmfsa0al3" path="res://PixelsDream-DemiBold.ttf" id="2_iut2e"]
+[ext_resource type="Texture2D" uid="uid://cpvi46coywrfb" path="res://mouth-stage4.png" id="3_o1c5e"]
+[ext_resource type="Texture2D" uid="uid://dgy7frltkgao7" path="res://eyemid.png" id="4_lvvtf"]
 
-[sub_resource type="Shader" id="Shader_d5f0r"]
+[sub_resource type="Shader" id="Shader_rleg0"]
 code = "/*
 Shader from Godot Shaders - the free shader library.
 godotshaders.com/shader/VHS-and-CRT-monitor-effect
@@ -242,134 +236,120 @@ void fragment()
 	COLOR = text;
 }"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0jlpp"]
-shader = SubResource("Shader_d5f0r")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_piy6y"]
+shader = SubResource("Shader_rleg0")
 shader_parameter/overlay = true
-shader_parameter/scanlines_opacity = 0.006
-shader_parameter/scanlines_width = 0.0
-shader_parameter/grille_opacity = 0.021
+shader_parameter/scanlines_opacity = 0.07
+shader_parameter/scanlines_width = 0.031
+shader_parameter/grille_opacity = 0.23
 shader_parameter/resolution = Vector2(640, 480)
 shader_parameter/pixelate = false
 shader_parameter/roll = false
 shader_parameter/roll_speed = 8.0
-shader_parameter/roll_size = 10.337
-shader_parameter/roll_variation = 1.8
-shader_parameter/distort_intensity = 0.04
-shader_parameter/noise_opacity = 0.073
+shader_parameter/roll_size = 0.0
+shader_parameter/roll_variation = 1.631
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.294
 shader_parameter/noise_speed = 5.0
-shader_parameter/static_noise_intensity = 0.06
+shader_parameter/static_noise_intensity = 0.495
 shader_parameter/aberration = 0.03
 shader_parameter/brightness = 1.4
 shader_parameter/discolor = false
-shader_parameter/warp_amount = 0.0
+shader_parameter/warp_amount = 0.978
 shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.4
-shader_parameter/vignette_opacity = 0.5
+shader_parameter/vignette_opacity = 0.0
 
-[node name="StartPhase" type="Control" node_paths=PackedStringArray("Pages", "page_flip")]
-layout_mode = 3
+[node name="Control" type="CanvasLayer"]
+process_mode = 4
+visible = false
+script = ExtResource("1_rniu8")
+
+[node name="parry" type="RichTextLabel" parent="."]
+z_index = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 154.0
+offset_top = 40.0
+offset_right = -118.0
+offset_bottom = -430.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-script = ExtResource("1_vtrqm")
-Pages = [NodePath("TextureRect7"), NodePath("TextureRect"), NodePath("TextureRect6"), NodePath("TextureRect5"), NodePath("TextureRect4"), NodePath("TextureRect3"), NodePath("TextureRect2")]
-page_flip = NodePath("PageFlip")
+theme_override_colors/default_color = Color(0.670588, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 13
+theme_override_fonts/normal_font = ExtResource("2_iut2e")
+theme_override_font_sizes/normal_font_size = 128
+bbcode_enabled = true
+text = "[center][shake rate=100.0 level=100 qqconnected=1100] Game Over [/shake]"
 
-[node name="ColorRect2" type="TextureRect" parent="."]
-layout_mode = 1
+[node name="parry2" type="RichTextLabel" parent="."]
+z_index = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -2.0
+offset_left = 460.0
+offset_top = 183.0
+offset_right = 188.0
+offset_bottom = -287.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-texture = ExtResource("1_rfwe0")
+theme_override_colors/default_color = Color(0.670588, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 13
+theme_override_fonts/normal_font = ExtResource("2_iut2e")
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "Try reading the book"
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="parry3" type="RichTextLabel" parent="."]
+z_index = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 430.0
+offset_top = 503.0
+offset_right = 158.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.670588, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 13
+theme_override_fonts/normal_font = ExtResource("2_iut2e")
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "Click any where to retry"
+scroll_active = false
+
+[node name="ColorRect2" type="ColorRect" parent="."]
 z_index = 1
-material = SubResource("ShaderMaterial_0jlpp")
-layout_mode = 1
+material = SubResource("ShaderMaterial_piy6y")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-
-[node name="TextureRect2" type="TextureRect" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_c2lif")
-
-[node name="TextureRect3" type="TextureRect" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_ujqya")
-
-[node name="TextureRect4" type="TextureRect" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_iffcp")
-
-[node name="TextureRect5" type="TextureRect" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_ekjah")
-
-[node name="TextureRect6" type="TextureRect" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("5_nqq60")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-visible = false
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_sceea")
+texture = ExtResource("3_o1c5e")
 
-[node name="TextureRect7" type="TextureRect" parent="."]
-layout_mode = 1
+[node name="TextureRect2" type="TextureRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1033.0
+offset_top = -237.0
+offset_right = 1033.0
+offset_bottom = -237.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("7_irc10")
-
-[node name="PageFlip" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_sy4ia")
-volume_db = -10.0
+rotation = 1.5708
+texture = ExtResource("4_lvvtf")
